@@ -322,4 +322,27 @@
         Haven't found some strings? There's more at
         https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
     -->
+
+    <!-- Timepage UI specific strings -->
+    <string name="all_day_events">All Day</string>
+    <string name="current_time">Now</string>
+    <string name="no_events_today">No events today</string>
+    <string name="events_count">%d events</string>
+    <string name="event_time_format">%s – %s</string>
+    <string name="travel_time">Travel time</string>
+    <string name="weather">Weather</string>
+    <string name="status_home">Home</string>
+    <string name="status_busy">Busy</string>
+    <string name="countdown">%s until event</string>
+    <string name="event_notes">Notes</string>
+    <string name="event_url">URL</string>
+    <string name="event_attachments">Attachments</string>
+    <string name="edit_event_button">Edit Event</string>
+    <string name="delete_event_button">Delete Event</string>
+    <string name="share_event_button">Share Event</string>
+    <string name="notifications">Notifications</string>
+    <string name="alerts">Alerts</string>
+    <string name="select_color">Select Color</string>
+    <string name="more_events">+%d more</string>
+    <string name="today_label">Today</string>
 </resources>
