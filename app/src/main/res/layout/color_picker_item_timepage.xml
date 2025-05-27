@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/spacing_large"
+    android:background="?android:attr/selectableItemBackgroundBorderless"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_standard">
+
+    <!-- Color Circle -->
+    <View
+        android:id="@+id/color_circle"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/color_circle_background"
+        tools:backgroundTint="@color/event_color_1" />
+
+    <!-- Selection Ring -->
+    <View
+        android:id="@+id/selection_ring"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="-44dp"
+        android:background="@drawable/color_selection_ring"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</LinearLayout> 

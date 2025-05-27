@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_primary_background">
+
+    <!-- App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_primary_background"
+        app:elevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            android:paddingStart="@dimen/screen_margin_default"
+            android:paddingEnd="@dimen/screen_margin_default">
+
+            <!-- Cancel Button -->
+            <org.fossify.commons.views.MyTextView
+                android:id="@+id/cancel_button"
+                style="@style/TextAppearance.Timepage.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingHorizontal="@dimen/spacing_standard"
+                android:paddingVertical="@dimen/spacing_standard"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_text_primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Screen Title -->
+            <org.fossify.commons.views.MyTextView
+                android:id="@+id/screen_title"
+                style="@style/TextAppearance.Timepage.H1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/spacing_large"
+                android:gravity="center"
+                android:text="@string/new_event"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/save_button"
+                app:layout_constraintStart_toEndOf="@id/cancel_button"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Save Button -->
+            <org.fossify.commons.views.MyTextView
+                android:id="@+id/save_button"
+                style="@style/TextAppearance.Timepage.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingHorizontal="@dimen/spacing_standard"
+                android:paddingVertical="@dimen/spacing_standard"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:textColor="@color/accent_primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/event_edit_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/spacing_xxxlarge">
+
+            <!-- Event Title Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/event_title_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_default"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/screen_margin_default"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:hint="@string/event_title"
+                app:boxBackgroundColor="@color/dark_content_background"
+                app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius_timepage"
+                app:boxCornerRadiusBottomStart="@dimen/card_corner_radius_timepage"
+                app:boxCornerRadiusTopEnd="@dimen/card_corner_radius_timepage"
+                app:boxCornerRadiusTopStart="@dimen/card_corner_radius_timepage"
+                app:boxStrokeColor="@color/accent_primary"
+                app:hintTextColor="@color/dark_text_secondary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/event_title_input"
+                    style="@style/TextAppearance.Timepage.EventTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:textColor="@color/dark_text_primary"
+                    android:textColorHint="@color/dark_text_secondary" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Date & Time Section -->
+            <androidx.cardview.widget.CardView
+                style="@style/EventCard.Timepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/event_card_padding">
+
+                    <!-- All Day Toggle -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/spacing_standard">
+
+                        <org.fossify.commons.views.MyTextView
+                            style="@style/TextAppearance.Timepage.EventTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/all_day" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/all_day_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:thumbTint="@color/dark_primary_background"
+                            app:trackTint="@color/accent_primary" />
+
+                    </LinearLayout>
+
+                    <!-- Date Selection -->
+                    <LinearLayout
+                        android:id="@+id/date_selection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/spacing_large">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_standard"
+                            android:layout_height="@dimen/icon_size_standard"
+                            android:layout_marginEnd="@dimen/spacing_large"
+                            android:src="@drawable/ic_calendar_vector"
+                            android:tint="@color/dark_text_secondary" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <org.fossify.commons.views.MyTextView
+                                style="@style/TextAppearance.Timepage.EventTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/date" />
+
+                            <org.fossify.commons.views.MyTextView
+                                android:id="@+id/selected_date"
+                                style="@style/TextAppearance.Timepage.EventDetails"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_half"
+                                tools:text="Thursday, June 9, 2023" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Start Time Selection -->
+                    <LinearLayout
+                        android:id="@+id/start_time_selection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/spacing_large">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_standard"
+                            android:layout_height="@dimen/icon_size_standard"
+                            android:layout_marginEnd="@dimen/spacing_large"
+                            android:src="@drawable/ic_time_vector"
+                            android:tint="@color/dark_text_secondary" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <org.fossify.commons.views.MyTextView
+                                style="@style/TextAppearance.Timepage.EventTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/start_time" />
+
+                            <org.fossify.commons.views.MyTextView
+                                android:id="@+id/selected_start_time"
+                                style="@style/TextAppearance.Timepage.EventDetails"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_half"
+                                tools:text="9:00 AM" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- End Time Selection -->
+                    <LinearLayout
+                        android:id="@+id/end_time_selection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/spacing_large">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_standard"
+                            android:layout_height="@dimen/icon_size_standard"
+                            android:layout_marginEnd="@dimen/spacing_large"
+                            android:src="@drawable/ic_time_vector"
+                            android:tint="@color/dark_text_secondary" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <org.fossify.commons.views.MyTextView
+                                style="@style/TextAppearance.Timepage.EventTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/end_time" />
+
+                            <org.fossify.commons.views.MyTextView
+                                android:id="@+id/selected_end_time"
+                                style="@style/TextAppearance.Timepage.EventDetails"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_half"
+                                tools:text="10:00 AM" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Location Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/location_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_default"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/screen_margin_default"
+                android:hint="@string/location"
+                app:boxBackgroundColor="@color/dark_content_background"
+                app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius_timepage"
+                app:boxCornerRadiusBottomStart="@dimen/card_corner_radius_timepage"
+                app:boxCornerRadiusTopEnd="@dimen/card_corner_radius_timepage"
+                app:boxCornerRadiusTopStart="@dimen/card_corner_radius_timepage"
+                app:boxStrokeColor="@color/accent_primary"
+                app:hintTextColor="@color/dark_text_secondary"
+                app:startIconDrawable="@drawable/ic_location_vector"
+                app:startIconTint="@color/dark_text_secondary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/location_input"
+                    style="@style/TextAppearance.Timepage.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:textColor="@color/dark_text_primary"
+                    android:textColorHint="@color/dark_text_secondary" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Notes Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/notes_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_default"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/screen_margin_default"
+                android:hint="@string/notes"
+                app:boxBackgroundColor="@color/dark_content_background"
+                app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius_timepage"
+                app:boxCornerRadiusBottomStart="@dimen/card_corner_radius_timepage"
+                app:boxCornerRadiusTopEnd="@dimen/card_corner_radius_timepage"
+                app:boxCornerRadiusTopStart="@dimen/card_corner_radius_timepage"
+                app:boxStrokeColor="@color/accent_primary"
+                app:hintTextColor="@color/dark_text_secondary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/notes_input"
+                    style="@style/TextAppearance.Timepage.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:lines="3"
+                    android:textColor="@color/dark_text_primary"
+                    android:textColorHint="@color/dark_text_secondary" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- URL Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/url_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_default"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/screen_margin_default"
+                android:hint="@string/url"
+                app:boxBackgroundColor="@color/dark_content_background"
+                app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius_timepage"
+                app:boxCornerRadiusBottomStart="@dimen/card_corner_radius_timepage"
+                app:boxCornerRadiusTopEnd="@dimen/card_corner_radius_timepage"
+                app:boxCornerRadiusTopStart="@dimen/card_corner_radius_timepage"
+                app:boxStrokeColor="@color/accent_primary"
+                app:hintTextColor="@color/dark_text_secondary"
+                app:startIconDrawable="@drawable/ic_link_vector"
+                app:startIconTint="@color/dark_text_secondary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/url_input"
+                    style="@style/TextAppearance.Timepage.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textUri"
+                    android:textColor="@color/dark_text_primary"
+                    android:textColorHint="@color/dark_text_secondary" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Event Color Selection -->
+            <androidx.cardview.widget.CardView
+                style="@style/EventCard.Timepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/event_card_padding">
+
+                    <org.fossify.commons.views.MyTextView
+                        style="@style/TextAppearance.Timepage.EventTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_large"
+                        android:text="@string/event_color" />
+
+                    <!-- Color Picker -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/color_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="7"
+                        tools:listitem="@layout/color_picker_item_timepage" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Notification Settings -->
+            <androidx.cardview.widget.CardView
+                style="@style/EventCard.Timepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/event_card_padding">
+
+                    <!-- Notifications Setting -->
+                    <include
+                        layout="@layout/event_setting_item_timepage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="0dp" />
+
+                    <!-- Alerts Setting -->
+                    <include
+                        layout="@layout/event_setting_item_timepage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="0dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout> 

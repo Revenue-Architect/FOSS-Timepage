@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_primary_background">
+
+    <!-- Refreshable Week Content -->
+    <org.fossify.calendar.helpers.SmartSwipeRefreshLayout
+        android:id="@+id/week_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/week_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/week_days_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/spacing_large"
+                android:paddingBottom="@dimen/spacing_xxxlarge">
+
+                <!-- Week days will be added here programmatically -->
+                <!-- Each day will use the week_day_section layout -->
+
+                <!-- Sample Day Section (for preview) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/spacing_xlarge"
+                    tools:visibility="visible">
+
+                    <!-- Day Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/screen_margin_default"
+                        android:layout_marginEnd="@dimen/screen_margin_default"
+                        android:layout_marginBottom="@dimen/spacing_standard"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <!-- Day Number and Name -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <org.fossify.commons.views.MyTextView
+                                style="@style/TextAppearance.Timepage.DateHeader"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/dark_text_secondary"
+                                android:textSize="12sp"
+                                tools:text="SUN" />
+
+                            <org.fossify.commons.views.MyTextView
+                                style="@style/TextAppearance.Timepage.H2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/dark_text_primary"
+                                android:textSize="20sp"
+                                tools:text="22" />
+
+                        </LinearLayout>
+
+                        <!-- Expandable indicator (optional) -->
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:id="@+id/day_expand_icon"
+                            android:layout_width="@dimen/icon_size_standard"
+                            android:layout_height="@dimen/icon_size_standard"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            android:padding="@dimen/spacing_half"
+                            android:src="@drawable/ic_expand_less_vector"
+                            android:tint="@color/dark_text_secondary"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
+
+                    </LinearLayout>
+
+                    <!-- Day Events Container -->
+                    <LinearLayout
+                        android:id="@+id/day_events_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- Sample Events for this day -->
+                        <androidx.cardview.widget.CardView
+                            style="@style/EventCard.Timepage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/event_card_padding">
+
+                                <!-- Event color indicator -->
+                                <View
+                                    android:id="@+id/sample_event_color"
+                                    android:layout_width="@dimen/event_dot_size"
+                                    android:layout_height="@dimen/event_dot_size"
+                                    android:layout_marginTop="@dimen/spacing_half"
+                                    android:background="@drawable/event_color_dot"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="@id/sample_event_title" />
+
+                                <!-- Event title -->
+                                <org.fossify.commons.views.MyTextView
+                                    android:id="@+id/sample_event_title"
+                                    style="@style/TextAppearance.Timepage.EventTitle"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/event_dot_margin_end"
+                                    android:layout_marginEnd="@dimen/spacing_standard"
+                                    app:layout_constraintEnd_toStartOf="@id/sample_event_time"
+                                    app:layout_constraintStart_toEndOf="@id/sample_event_color"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:text="Gym" />
+
+                                <!-- Event time -->
+                                <org.fossify.commons.views.MyTextView
+                                    android:id="@+id/sample_event_time"
+                                    style="@style/TextAppearance.Timepage.EventDetails"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@id/sample_event_title"
+                                    tools:text="8:00 AM" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- More sample events -->
+                        <androidx.cardview.widget.CardView
+                            style="@style/EventCard.Timepage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/event_card_padding">
+
+                                <View
+                                    android:id="@+id/sample_event_color2"
+                                    android:layout_width="@dimen/event_dot_size"
+                                    android:layout_height="@dimen/event_dot_size"
+                                    android:layout_marginTop="@dimen/spacing_half"
+                                    android:background="@drawable/event_color_dot"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="@id/sample_event_title2" />
+
+                                <org.fossify.commons.views.MyTextView
+                                    android:id="@+id/sample_event_title2"
+                                    style="@style/TextAppearance.Timepage.EventTitle"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/event_dot_margin_end"
+                                    android:layout_marginEnd="@dimen/spacing_standard"
+                                    app:layout_constraintEnd_toStartOf="@id/sample_event_time2"
+                                    app:layout_constraintStart_toEndOf="@id/sample_event_color2"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:text="Lunch with Priya" />
+
+                                <org.fossify.commons.views.MyTextView
+                                    android:id="@+id/sample_event_time2"
+                                    style="@style/TextAppearance.Timepage.EventDetails"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@id/sample_event_title2"
+                                    tools:text="1:00 PM" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </org.fossify.calendar.helpers.SmartSwipeRefreshLayout>
+
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/week_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/spacing_large"
+        android:contentDescription="@string/new_event"
+        android:src="@drawable/ic_plus_vector"
+        app:backgroundTint="@color/accent_primary"
+        app:elevation="@dimen/spacing_standard"
+        app:tint="@color/dark_primary_background" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout> 

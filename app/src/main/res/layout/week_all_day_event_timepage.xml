@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/EventCard.Timepage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/event_card_padding">
+
+        <!-- Event color indicator dot -->
+        <View
+            android:id="@+id/event_color_indicator"
+            android:layout_width="@dimen/event_dot_size"
+            android:layout_height="@dimen/event_dot_size"
+            android:layout_marginEnd="@dimen/event_dot_margin_end"
+            android:background="@drawable/event_color_dot" />
+
+        <!-- Event title -->
+        <org.fossify.commons.views.MyTextView
+            android:id="@+id/event_title"
+            style="@style/TextAppearance.Timepage.EventTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="1"
+            tools:text="Rica away" />
+
+        <!-- All day indicator -->
+        <org.fossify.commons.views.MyTextView
+            android:id="@+id/all_day_indicator"
+            style="@style/TextAppearance.Timepage.EventDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/all_day_indicator_background"
+            android:paddingStart="@dimen/spacing_standard"
+            android:paddingTop="@dimen/spacing_half"
+            android:paddingEnd="@dimen/spacing_standard"
+            android:paddingBottom="@dimen/spacing_half"
+            android:text="@string/all_day"
+            android:textColor="@color/dark_text_secondary"
+            android:textSize="10sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <!-- Task completion indicator -->
+        <CheckBox
+            android:id="@+id/event_task_completion"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="@dimen/spacing_standard"
+            android:background="@drawable/task_checkbox_background"
+            android:buttonTint="@color/accent_primary"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView> 

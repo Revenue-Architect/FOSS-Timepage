@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_primary_background">
+
+    <!-- Refreshable Timeline Content -->
+    <org.fossify.calendar.helpers.SmartSwipeRefreshLayout
+        android:id="@+id/day_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/day_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/spacing_xxxlarge">
+
+                <!-- All Day Events Section -->
+                <LinearLayout
+                    android:id="@+id/day_all_day_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/spacing_large"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <org.fossify.commons.views.MyTextView
+                        android:id="@+id/day_all_day_header"
+                        style="@style/TextAppearance.Timepage.DateHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/screen_margin_default"
+                        android:layout_marginEnd="@dimen/screen_margin_default"
+                        android:layout_marginBottom="@dimen/spacing_standard"
+                        android:text="@string/all_day"
+                        android:textColor="@color/dark_text_secondary" />
+
+                    <!-- All Day Events RecyclerView -->
+                    <org.fossify.commons.views.MyRecyclerView
+                        android:id="@+id/day_all_day_events"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:overScrollMode="never"
+                        app:layoutManager="org.fossify.commons.views.MyLinearLayoutManager" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large" />
+
+                </LinearLayout>
+
+                <!-- Schedule Section Header -->
+                <org.fossify.commons.views.MyTextView
+                    android:id="@+id/day_schedule_header"
+                    style="@style/TextAppearance.Timepage.DateHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/screen_margin_default"
+                    android:layout_marginEnd="@dimen/screen_margin_default"
+                    android:layout_marginBottom="@dimen/spacing_standard"
+                    android:text="@string/schedule"
+                    android:textColor="@color/dark_text_secondary" />
+
+                <!-- Timeline Container -->
+                <FrameLayout
+                    android:id="@+id/day_timeline_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- Timeline Background -->
+                    <LinearLayout
+                        android:id="@+id/day_timeline_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- Dynamic Timeline Hours (Generated programmatically) -->
+                        <!-- This will be populated by the adapter -->
+
+                    </LinearLayout>
+
+                    <!-- Events Overlay -->
+                    <FrameLayout
+                        android:id="@+id/day_events_holder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/timeline_time_width"
+                        android:paddingStart="@dimen/spacing_standard"
+                        android:paddingEnd="@dimen/screen_margin_default">
+
+                        <!-- Events will be positioned here dynamically -->
+
+                    </FrameLayout>
+
+                    <!-- Current Time Indicator -->
+                    <LinearLayout
+                        android:id="@+id/day_current_time_indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        tools:layout_marginTop="120dp"
+                        tools:visibility="visible">
+
+                        <!-- Current Time Label -->
+                        <org.fossify.commons.views.MyTextView
+                            android:id="@+id/day_current_time_text"
+                            style="@style/TimelineHour.Timepage"
+                            android:layout_width="@dimen/timeline_time_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/screen_margin_default"
+                            android:textColor="@color/accent_primary"
+                            tools:text="2:30 PM" />
+
+                        <!-- Current Time Line -->
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/timeline_current_indicator_height"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/screen_margin_default"
+                            android:layout_weight="1"
+                            android:background="@color/accent_primary" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <!-- Timeline Hour Template (Hidden, used for dynamic generation) -->
+                <LinearLayout
+                    android:id="@+id/timeline_hour_template"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/timeline_hour_height"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <!-- Hour Label -->
+                    <org.fossify.commons.views.MyTextView
+                        android:id="@+id/timeline_hour_label"
+                        style="@style/TimelineHour.Timepage"
+                        android:layout_width="@dimen/timeline_time_width"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/screen_margin_default"
+                        tools:text="12 PM" />
+
+                    <!-- Hour Content Area -->
+                    <FrameLayout
+                        android:id="@+id/timeline_hour_content"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingEnd="@dimen/screen_margin_default">
+
+                        <!-- Hour separator line -->
+                        <View
+                            android:id="@+id/timeline_hour_separator"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_gravity="bottom"
+                            android:alpha="0.3"
+                            android:background="@color/separator_dark" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </org.fossify.calendar.helpers.SmartSwipeRefreshLayout>
+
+    <!-- Floating Action Button for Quick Add -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/day_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/spacing_large"
+        android:contentDescription="@string/new_event"
+        android:src="@drawable/ic_plus_vector"
+        app:backgroundTint="@color/accent_primary"
+        app:elevation="@dimen/spacing_standard"
+        app:tint="@color/dark_primary_background" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout> 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="@dimen/margin_small"
+    android:background="@drawable/all_day_indicator_background"
+    android:layout_marginVertical="@dimen/margin_tiny">
+
+    <View
+        android:id="@+id/event_color_dot"
+        android:layout_width="@dimen/event_color_dot_size"
+        android:layout_height="@dimen/event_color_dot_size"
+        android:background="@drawable/event_color_dot"
+        android:layout_marginEnd="@dimen/margin_small" />
+
+    <TextView
+        android:id="@+id/event_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="All Day Event"
+        android:textSize="@dimen/timepage_body_text_size"
+        android:textColor="@color/dark_text_primary"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+</LinearLayout> 

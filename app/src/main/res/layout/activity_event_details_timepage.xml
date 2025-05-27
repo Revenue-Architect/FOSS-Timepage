@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_primary_background">
+
+    <!-- App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_primary_background"
+        app:elevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            android:paddingStart="@dimen/screen_margin_default"
+            android:paddingEnd="@dimen/screen_margin_default">
+
+            <!-- Back Button -->
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="@dimen/icon_size_standard"
+                android:layout_height="@dimen/icon_size_standard"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/back"
+                android:padding="@dimen/spacing_half"
+                android:src="@drawable/ic_arrow_left_vector"
+                android:tint="@color/dark_text_primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Event Title -->
+            <org.fossify.commons.views.MyTextView
+                android:id="@+id/event_title_header"
+                style="@style/TextAppearance.Timepage.H1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/spacing_large"
+                android:gravity="center"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/edit_button"
+                app:layout_constraintStart_toEndOf="@id/back_button"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Picnic" />
+
+            <!-- Edit Button -->
+            <ImageView
+                android:id="@+id/edit_button"
+                android:layout_width="@dimen/icon_size_standard"
+                android:layout_height="@dimen/icon_size_standard"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/edit"
+                android:padding="@dimen/spacing_half"
+                android:src="@drawable/ic_edit_vector"
+                android:tint="@color/dark_text_primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/event_details_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/spacing_xxxlarge">
+
+            <!-- Event Time & Date Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_default"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/screen_margin_default"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <!-- Event Time -->
+                <org.fossify.commons.views.MyTextView
+                    android:id="@+id/event_time_display"
+                    style="@style/TextAppearance.Timepage.H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_text_primary"
+                    android:textSize="18sp"
+                    tools:text="9:00 AM - 10:00 AM" />
+
+                <!-- Event Date -->
+                <org.fossify.commons.views.MyTextView
+                    android:id="@+id/event_date_display"
+                    style="@style/TextAppearance.Timepage.DateHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_half"
+                    android:textColor="@color/dark_text_secondary"
+                    tools:text="THURSDAY 09 JUNE" />
+
+            </LinearLayout>
+
+            <!-- Travel & Weather Info -->
+            <LinearLayout
+                android:id="@+id/travel_weather_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_default"
+                android:layout_marginTop="@dimen/spacing_xlarge"
+                android:layout_marginEnd="@dimen/screen_margin_default"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <!-- Travel Info -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="@dimen/spacing_xxxlarge">
+
+                    <ImageView
+                        android:id="@+id/travel_icon"
+                        android:layout_width="@dimen/icon_size_large"
+                        android:layout_height="@dimen/icon_size_large"
+                        android:src="@drawable/ic_car_vector"
+                        android:tint="@color/dark_text_secondary" />
+
+                    <org.fossify.commons.views.MyTextView
+                        android:id="@+id/travel_time"
+                        style="@style/TextAppearance.Timepage.H2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_standard"
+                        android:textSize="18sp"
+                        tools:text="13 min" />
+
+                </LinearLayout>
+
+                <!-- Weather Info -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/weather_icon"
+                        android:layout_width="@dimen/icon_size_large"
+                        android:layout_height="@dimen/icon_size_large"
+                        android:src="@drawable/ic_weather_sunny"
+                        android:tint="@color/dark_text_secondary" />
+
+                    <org.fossify.commons.views.MyTextView
+                        android:id="@+id/weather_temp"
+                        style="@style/TextAppearance.Timepage.H2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_standard"
+                        android:textSize="18sp"
+                        tools:text="30°" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Settings Sections -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xlarge"
+                android:orientation="vertical">
+
+                <!-- Notifications Section -->
+                <include
+                    layout="@layout/event_setting_item_timepage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Alert Section -->
+                <include
+                    layout="@layout/event_setting_item_timepage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Status Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/screen_margin_default"
+                    android:layout_marginEnd="@dimen/screen_margin_default"
+                    android:layout_marginBottom="@dimen/spacing_standard"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/spacing_standard">
+
+                    <!-- Home Status Button -->
+                    <Button
+                        android:id="@+id/status_home"
+                        style="@style/Button.Timepage.Primary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/button_height"
+                        android:layout_marginEnd="@dimen/spacing_standard"
+                        android:text="@string/home"
+                        android:textColor="@color/dark_primary_background" />
+
+                    <!-- Busy Status Button -->
+                    <Button
+                        android:id="@+id/status_busy"
+                        style="@style/Button.Timepage.Secondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/button_height"
+                        android:drawableStart="@drawable/ic_check_vector"
+                        android:drawablePadding="@dimen/spacing_standard"
+                        android:drawableTint="@color/accent_primary"
+                        android:text="@string/busy" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Attendees Section -->
+            <LinearLayout
+                android:id="@+id/attendees_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_default"
+                android:layout_marginEnd="@dimen/screen_margin_default"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/spacing_standard"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <org.fossify.commons.views.MyTextView
+                    style="@style/TextAppearance.Timepage.EventTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/attendees" />
+
+                <org.fossify.commons.views.MyTextView
+                    android:id="@+id/attendees_list"
+                    style="@style/TextAppearance.Timepage.EventDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="SC JP +" />
+
+            </LinearLayout>
+
+            <!-- Notes Section -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/notes_card"
+                style="@style/EventCard.Timepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/event_card_padding">
+
+                    <org.fossify.commons.views.MyTextView
+                        style="@style/TextAppearance.Timepage.EventTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_standard"
+                        android:text="@string/notes" />
+
+                    <org.fossify.commons.views.MyTextView
+                        android:id="@+id/event_notes"
+                        style="@style/TextAppearance.Timepage.Body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Remember to bring ice!" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- URL Section -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/url_card"
+                style="@style/EventCard.Timepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/event_card_padding">
+
+                    <org.fossify.commons.views.MyTextView
+                        style="@style/TextAppearance.Timepage.EventTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_standard"
+                        android:text="@string/url" />
+
+                    <org.fossify.commons.views.MyTextView
+                        android:id="@+id/event_url"
+                        style="@style/TextAppearance.Timepage.Body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="web"
+                        android:textColor="@color/accent_secondary"
+                        tools:text="https://example.com" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Location Section -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/location_card"
+                style="@style/EventCard.Timepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Map View -->
+                    <FrameLayout
+                        android:id="@+id/map_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@color/dark_content_background_secondary">
+
+                        <!-- Map placeholder -->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/map_placeholder"
+                            tools:background="@color/dark_content_background_secondary" />
+
+                        <!-- Location Pin -->
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_standard"
+                            android:layout_height="@dimen/icon_size_standard"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_location_pin"
+                            android:tint="@color/accent_primary" />
+
+                    </FrameLayout>
+
+                    <!-- Location Details -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/event_card_padding">
+
+                        <org.fossify.commons.views.MyTextView
+                            android:id="@+id/location_name"
+                            style="@style/TextAppearance.Timepage.EventTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_half"
+                            tools:text="Commonwealth Park" />
+
+                        <org.fossify.commons.views.MyTextView
+                            android:id="@+id/location_address"
+                            style="@style/TextAppearance.Timepage.EventDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="100 Commonwealth Ave, Yarralumla ACT 2600, Australia" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Countdown Section -->
+            <LinearLayout
+                android:id="@+id/countdown_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_default"
+                android:layout_marginTop="@dimen/spacing_xlarge"
+                android:layout_marginEnd="@dimen/screen_margin_default"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <org.fossify.commons.views.MyTextView
+                    android:id="@+id/countdown_text"
+                    style="@style/TextAppearance.Timepage.DateHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_text_secondary"
+                    tools:text="8 DAYS 7 HOURS" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout> 
