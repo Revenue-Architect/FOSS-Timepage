@@ -1,43 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Legacy dimensions for backwards compatibility -->
     <dimen name="yearly_padding_side">10dp</dimen>
     <dimen name="yearly_padding_half">3dp</dimen>
     <dimen name="yearly_padding_full">6dp</dimen>
     <dimen name="circle_stroke_width">2dp</dimen>
     <dimen name="secondary_fab_size">40dp</dimen>
     <dimen name="smaller_icon_size">44dp</dimen>
-
     <dimen name="monthly_day_height">40dp</dimen>
-
     <dimen name="weekly_view_row_height">60dp</dimen>
     <dimen name="weekly_view_minimal_event_height">10dp</dimen>
     <dimen name="weekly_view_now_height">10dp</dimen>
     <dimen name="weekly_view_min_day_label">60dp</dimen>
-
     <dimen name="min_widget_width">250dp</dimen>
     <dimen name="min_widget_height">250dp</dimen>
-
     <dimen name="repeat_type_margin_start">40dp</dimen>
-
     <dimen name="yearly_month_padding">0dp</dimen>
     <dimen name="endless_scroll_move_height">24dp</dimen>
-
-    <dimen name="day_monthly_text_size">11sp</dimen>
-    <dimen name="meta_text_size">14sp</dimen>
-    <dimen name="day_text_size">17sp</dimen>
-    <dimen name="month_text_size">22sp</dimen>
-
-    <dimen name="year_view_day_text_size">8sp</dimen>
-
-    <dimen name="event_color_bar_width">16dp</dimen>
-    <dimen name="event_color_bar_height">100dp</dimen>
-
     <dimen name="avatar_size">40dp</dimen>
     <dimen name="avatar_status_size">16dp</dimen>
-
     <dimen name="quick_filter_height">48dp</dimen>
     <dimen name="quick_filter_min_width">88dp</dimen>
     <dimen name="quick_filter_active_line_size">6dp</dimen>
     <dimen name="quick_filter_inactive_line_size">2dp</dimen>
     <dimen name="zero">0dp</dimen>
+
+    <!-- Timepage Design System - Typography (PRD Specifications) -->
+    <!-- H1 Titles (Day/View Name): 30sp, Semi-Bold -->
+    <dimen name="text_h1_title">30sp</dimen>
+    
+    <!-- H2 Titles (Section Headers "Today"): 24sp, Semi-Bold -->
+    <dimen name="text_h2_title">24sp</dimen>
+    
+    <!-- Date Headers: 14sp, Medium, Uppercase -->
+    <dimen name="text_date_header">14sp</dimen>
+    
+    <!-- Event Titles: 17sp, Medium -->
+    <dimen name="text_event_title">17sp</dimen>
+    
+    <!-- Event Details (Time/Location): 13sp, Regular -->
+    <dimen name="text_event_details">13sp</dimen>
+    
+    <!-- Button Text: 15sp, Medium, Uppercase -->
+    <dimen name="text_button">15sp</dimen>
+    
+    <!-- Body/Notes: 15sp, Regular -->
+    <dimen name="text_body_notes">15sp</dimen>
+
+    <!-- Legacy text sizes -->
+    <dimen name="day_monthly_text_size">11sp</dimen>
+    <dimen name="meta_text_size">14sp</dimen>
+    <dimen name="day_text_size">17sp</dimen>
+    <dimen name="month_text_size">22sp</dimen>
+    <dimen name="year_view_day_text_size">8sp</dimen>
+
+    <!-- Timepage Design System - Layout & Spacing (PRD Specifications) -->
+    <!-- Default Screen Margin: 20dp -->
+    <dimen name="screen_margin_default">20dp</dimen>
+    
+    <!-- Standard Spacing Unit: 8dp (use multiples: 4dp, 8dp, 12dp, 16dp, 24dp) -->
+    <dimen name="spacing_unit">8dp</dimen>
+    <dimen name="spacing_half">4dp</dimen>      <!-- 4dp -->
+    <dimen name="spacing_standard">8dp</dimen>   <!-- 8dp -->
+    <dimen name="spacing_medium">12dp</dimen>    <!-- 12dp -->
+    <dimen name="spacing_large">16dp</dimen>     <!-- 16dp -->
+    <dimen name="spacing_xlarge">24dp</dimen>    <!-- 24dp -->
+    <dimen name="spacing_xxlarge">32dp</dimen>   <!-- 32dp -->
+    <dimen name="spacing_xxxlarge">48dp</dimen>  <!-- 48dp -->
+    
+    <!-- Card Corner Radius: 10dp -->
+    <dimen name="card_corner_radius_timepage">10dp</dimen>
+    
+    <!-- Component Specific Dimensions -->
+    <dimen name="event_card_padding">16dp</dimen>
+    <dimen name="event_card_margin_horizontal">20dp</dimen>
+    <dimen name="event_card_margin_vertical">4dp</dimen>
+    <dimen name="event_dot_size">8dp</dimen>
+    <dimen name="event_dot_margin_end">12dp</dimen>
+    
+    <!-- Timeline View -->
+    <dimen name="timeline_hour_height">60dp</dimen>
+    <dimen name="timeline_time_width">60dp</dimen>
+    <dimen name="timeline_current_indicator_height">2dp</dimen>
+    
+    <!-- Touch Targets -->
+    <dimen name="touch_target_minimum">48dp</dimen>
+    
+    <!-- App Bar/Header -->
+    <dimen name="app_bar_height">56dp</dimen>
+    <dimen name="app_bar_padding_horizontal">20dp</dimen>
+    
+    <!-- Icons -->
+    <dimen name="icon_size_standard">24dp</dimen>
+    <dimen name="icon_size_large">32dp</dimen>
+    
+    <!-- Event related -->
+    <dimen name="event_color_bar_width">4dp</dimen>
+    <dimen name="event_color_bar_height">100dp</dimen>
+    
+    <!-- Input Fields -->
+    <dimen name="input_field_height">56dp</dimen>
+    <dimen name="input_field_padding">16dp</dimen>
+    
+    <!-- Buttons -->
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="button_padding_horizontal">24dp</dimen>
+    <dimen name="button_corner_radius">8dp</dimen>
+
+    <!-- Additional Timepage specific dimensions -->
+    <dimen name="timeline_hour_label_width">50dp</dimen>
+    <dimen name="event_color_dot_size">10dp</dimen>
+    <dimen name="timepage_card_corner_radius">10dp</dimen>
+    <dimen name="timepage_body_text_size">15sp</dimen>
+    <dimen name="timepage_caption_text_size">13sp</dimen>
+    <dimen name="margin_tiny">2dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
 </resources>
