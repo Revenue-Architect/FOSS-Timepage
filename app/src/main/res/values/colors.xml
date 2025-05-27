@@ -1,7 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Legacy colors for backwards compatibility -->
     <color name="red_text">@color/md_red_400_dark</color>
     <color name="default_birthdays_color">@color/md_blue_800</color>
     <color name="default_holidays_color">@color/md_green_700</color>
     <color name="default_anniversaries_color">@color/md_red_400_dark</color>
+
+    <!-- Timepage-inspired Design System Colors -->
+    
+    <!-- Dark Mode (Primary Theme) -->
+    <color name="dark_primary_background">#1C1C1E</color>
+    <color name="dark_content_background">#2C2C2E</color>
+    <color name="dark_content_background_secondary">#3A3A3C</color>
+    <color name="dark_text_primary">#EAEAEA</color>
+    <color name="dark_text_secondary">#A0A0A5</color>
+    
+    <!-- Light Mode -->
+    <color name="light_primary_background">#F7F7F2</color>
+    <color name="light_content_background">#FFFFFF</color>
+    <color name="light_text_primary">#333333</color>
+    <color name="light_text_secondary">#757575</color>
+    
+    <!-- Accent Colors -->
+    <color name="accent_primary">#FF7043</color>       <!-- Orange - Current day, primary actions -->
+    <color name="accent_secondary">#4DB6AC</color>     <!-- Teal - Secondary information -->
+    
+    <!-- Event Colors Palette -->
+    <color name="event_color_1">#FF7043</color>        <!-- Orange -->
+    <color name="event_color_2">#AB47BC</color>        <!-- Purple -->
+    <color name="event_color_3">#4DB6AC</color>        <!-- Teal -->
+    <color name="event_color_4">#66BB6A</color>        <!-- Green -->
+    <color name="event_color_5">#42A5F5</color>        <!-- Blue -->
+    <color name="event_color_6">#EF5350</color>        <!-- Red -->
+    <color name="event_color_7">#FFA726</color>        <!-- Amber -->
+    
+    <!-- Semantic Colors -->
+    <color name="separator_dark">#424242</color>
+    <color name="separator_light">#E0E0E0</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FF9800</color>
+    <color name="error">#F44336</color>
+    <color name="info">#2196F3</color>
+    
+    <!-- Surface elevations for dark theme -->
+    <color name="surface_1dp">#212121</color>
+    <color name="surface_2dp">#232323</color>
+    <color name="surface_3dp">#242424</color>
+    <color name="surface_4dp">#262626</color>
+    <color name="surface_6dp">#2A2A2A</color>
+    <color name="surface_8dp">#2C2C2C</color>
+    <color name="surface_12dp">#2F2F2F</color>
+    <color name="surface_16dp">#303030</color>
+    <color name="surface_24dp">#313131</color>
 </resources>
