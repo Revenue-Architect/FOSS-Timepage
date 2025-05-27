@@ -34,6 +34,7 @@ import org.fossify.calendar.extensions.seconds
 import org.fossify.calendar.extensions.tryImportEventsFromFile
 import org.fossify.calendar.extensions.updateWidgets
 import org.fossify.calendar.fragments.DayFragmentsHolder
+import org.fossify.calendar.fragments.DayFragmentsHolderTimepage
 import org.fossify.calendar.fragments.EventListFragment
 import org.fossify.calendar.fragments.MonthDayFragmentsHolder
 import org.fossify.calendar.fragments.MonthFragmentsHolder
@@ -139,6 +140,11 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
+
+    companion object {
+        // Feature flag to enable Timepage design
+        private const val ENABLE_TIMEPAGE_DESIGN = true
+    }
 
     private var showCalDAVRefreshToast = false
     private var mShouldFilterBeVisible = false
@@ -1072,14 +1078,14 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
     private fun openNewEvent() {
         hideKeyboard()
         val lastFragment = currentFragments.last()
-        val allowChangingDay = lastFragment !is DayFragmentsHolder && lastFragment !is MonthDayFragmentsHolder
+        val allowChangingDay = lastFragment !is DayFragmentsHolder && lastFragment !is DayFragmentsHolderTimepage && lastFragment !is MonthDayFragmentsHolder
         launchNewEventIntent(lastFragment.getNewEventDayCode(), allowChangingDay)
     }
 
     private fun openNewTask() {
         hideKeyboard()
         val lastFragment = currentFragments.last()
-        val allowChangingDay = lastFragment !is DayFragmentsHolder && lastFragment !is MonthDayFragmentsHolder
+        val allowChangingDay = lastFragment !is DayFragmentsHolder && lastFragment !is DayFragmentsHolderTimepage && lastFragment !is MonthDayFragmentsHolder
         launchNewTaskIntent(lastFragment.getNewEventDayCode(), allowChangingDay)
     }
 
@@ -1100,11 +1106,11 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
     }
 
     fun openDayFromMonthly(dateTime: DateTime) {
-        if (currentFragments.last() is DayFragmentsHolder) {
+        if (currentFragments.last() is DayFragmentsHolder || currentFragments.last() is DayFragmentsHolderTimepage) {
             return
         }
 
-        val fragment = DayFragmentsHolder()
+        val fragment = if (ENABLE_TIMEPAGE_DESIGN) DayFragmentsHolderTimepage() else DayFragmentsHolder()
         currentFragments.add(fragment)
         val bundle = Bundle()
         bundle.putString(DAY_CODE, Formatter.getDayCodeFromDateTime(dateTime))
@@ -1117,11 +1123,11 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
     }
 
     fun openDayFromWeekly(dateTime: DateTime) {
-        if (currentFragments.last() is DayFragmentsHolder) {
+        if (currentFragments.last() is DayFragmentsHolder || currentFragments.last() is DayFragmentsHolderTimepage) {
             return
         }
 
-        val fragment = DayFragmentsHolder()
+        val fragment = if (ENABLE_TIMEPAGE_DESIGN) DayFragmentsHolderTimepage() else DayFragmentsHolder()
         currentFragments.add(fragment)
         val bundle = Bundle()
         bundle.putString(DAY_CODE, Formatter.getDayCodeFromDateTime(dateTime))
@@ -1133,7 +1139,7 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
     }
 
     private fun getFragmentsHolder() = when (config.storedView) {
-        DAILY_VIEW -> DayFragmentsHolder()
+        DAILY_VIEW -> if (ENABLE_TIMEPAGE_DESIGN) DayFragmentsHolderTimepage() else DayFragmentsHolder()
         MONTHLY_VIEW -> MonthFragmentsHolder()
         MONTHLY_DAILY_VIEW -> MonthDayFragmentsHolder()
         YEARLY_VIEW -> YearFragmentsHolder()
